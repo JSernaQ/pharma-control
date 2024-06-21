@@ -1,0 +1,46 @@
+<%- include('../shared/head', {webTitle: 'Productos'}) -%>
+
+<div class="container">
+  <h1 class="text-center mb-4">INVENTARIO</h1>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Entradas</th>
+            <th scope="col">Salidas</th>
+            <th scope="col">Ganancias (Brutas)</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let a = 1 %>
+          <% if (productsItems.length > 0) { %>
+              <% productsItems.forEach(product => { %>
+                  <tr>
+                      <th scope="row"><%=  a %></th>
+                      <td><%= product.productName %></td>
+                      <td><%= product.price %>$</td>
+                      <td><%= product.stock %> Und</td>
+                      <td><%= product.inputs %></td>
+                      <td><%= product.outputs %></td>
+                      <td><%= product.outputs * product.price %></td>
+                      <td>
+                          <button class="btn btn-primary btn-sm">Editar</button>
+                          <button class="btn btn-danger btn-sm">Eliminar</button>
+                      </td>
+                  </tr>
+                  <% a = a + 1 %>
+              <% }) %>
+          <% } %>
+          
+        </tbody>
+      </table>
+</div>
+
+<%- include('../shared/footer') -%>

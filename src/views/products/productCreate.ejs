@@ -1,0 +1,105 @@
+<%- include('../shared/head', {webTitle: 'Agregar Producto'}) -%>
+
+<div class="container">
+    <h1 class="mb-4 my-5">Agregar producto</h1>
+
+    <div class="container">
+        <div style="display: none;" class="row alert alert-success" role="alert" id="alerts">
+            <div class="text-center mb-2"><%= alert %></div>
+            <button type="button" class=" col btn btn-outline-success" id="btn-alert">Success</button>
+        </div>
+        <% if (alert != '') { %>
+            <script>
+                document.getElementById('alerts').style.display = 'block'
+                document.getElementById('btn-alert').addEventListener('click', function(event) {
+                    document.getElementById('alerts').style.display = 'none'
+                })
+            </script>
+        <% } %>
+    </div>
+
+    <form action="/productos/crear" method="POST">
+        <input class="mb-4" type="text" placeholder="Codigo (Opcional)" class="form-control my-2" name="barCode" id="barCode">
+        <button class="mb-4" id="startScanButton">Escanear código de barras</button>
+        <button class="" id="closeCam" style="display: none">Cancelar</button>
+        <div class="text-center" id="camera" style="display: none;"></div>
+        
+        <input type="text" placeholder="Nombre del producto" class="form-control my-2" name="productName">
+        
+        <input type="text" placeholder="Descripción del producto" class="form-control my-2" name="productDescription">
+        
+        <input type="number" placeholder="Precio" class="form-control my-2" name="price">
+
+        <input type="number" placeholder="Stock" class="form-control my-2" name="stock">
+
+        <input type="number" placeholder="Stock minimo del producto (Opcional)" class="form-control my-2" name="minStock">
+
+        <input type="text" placeholder="Proveedor (Opcional)" class="form-control my-2" name="supplier">
+
+
+        <button type="submit" class="btn btn-primary mb-4">Enviar</button>
+    </form>
+</div>
+
+
+
+<script src="/js/quagga.min.js"></script>
+<script>
+    document.getElementById('closeCam').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('closeCam').style.display = 'none';
+        document.getElementById('camera').style.display = 'none';
+        Quagga.stop();
+    });
+</script>
+<script>
+    document.getElementById('startScanButton').addEventListener('click', function(event) {
+        event.preventDefault(); 
+        document.getElementById('closeCam').style.display = 'block';
+        document.getElementById('camera').style.display = 'block';
+
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector('#camera')
+            },
+            decoder: {
+                readers: [
+                    "code_128_reader",
+                    "ean_reader",
+                    "ean_8_reader",
+                    "upc_reader",
+                    "upc_e_reader",
+                    "code_39_reader",
+                    "code_39_vin_reader",
+                    "codabar_reader",
+                    "i2of5_reader",
+                    "2of5_reader",
+                    "code_93_reader",
+                ]
+            }
+        }, function(err) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start(); 
+        });
+
+        Quagga.onDetected(function(data) {
+            console.log(data.codeResult.code);
+
+            document.getElementById('barCode').value = data.codeResult.code;
+
+            Quagga.stop();
+            document.getElementById('camera').style.display = 'none';
+            document.getElementById('closeCam').style.display = 'none';
+
+        });
+    });
+
+</script>
+
+<%- include('../shared/footer') -%>
