@@ -3,11 +3,12 @@ const { mongoConnect } = require('../database/mongoConnection');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 class Server {
     constructor() {
         this.app = express();
-        this.port = process.env.PORT;
+        this.port = process.env.PORT || 4000;
 
         this.path = {
             home: '',
@@ -35,6 +36,7 @@ class Server {
     middlewares() {
         this.app.use(cors());
         this.app.use(express.json());
+        this.app.use(cookieParser())
         this.app.use(bodyParser.urlencoded({ extended: false }));
 
         this.app.use(express.static(path.join(__dirname, '../../public')));

@@ -1,10 +1,14 @@
 const { Product } = require('../models/product.model');
 
-const productsGet = (req, res) => {
+const productsGet = async (req, res) => {
     try {
-        res.render('products/mainProducts')
+        const productsItemsDB = await Product.find();
+        res.render('products/mainProducts', {products: productsItemsDB})
     } catch (error) {
-        console.log(error)
+        res.status(404).json({
+            success: false,
+            err: error
+        })
     }
 };
 
@@ -22,7 +26,6 @@ const productsInventoryGet = async (req, res) => {
             success: false,
             err: error
         })
-        console.log(error);
     }
 };
 

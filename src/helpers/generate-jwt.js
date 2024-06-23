@@ -1,11 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const generateJWT = (uid) => {
-
-    const expiresIn = 60 * 15
-
     try {
-        return jwt.sign({ uid }, process.env.jwtSecret , { expiresIn });
+        return jwt.sign({ uid }, process.env.JWTSECRET , { expiresIn: '8h'});
     } catch (error) {
         console.error(error);
     }

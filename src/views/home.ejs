@@ -1,3 +1,8 @@
-<%- include('shared/head', {webTitle: 'Home'}) -%>
-<h1>TE AMO NIA ❤️ </h1>
+<%- include('shared/head', { webTitle: 'Home' }) -%>
+<% if (msg) { %>
+    <div id="alertMessage" class="alert-success" role="alert">
+        <%= msg %>
+        <button id="closeAlert" class="close">&times;</button>
+    </div>
+<% } %>
 <%- include('shared/footer') -%>

@@ -1,8 +1,22 @@
-<%- include('../shared/head', {webTitle: 'Agregar Producto'}) -%>
+<%- include('../shared/head', {webTitle: 'Agregar Producto' }) -%>
 
-<div class="container mt-4 mb-4 text-center">
-    <button class="btn btn-outline-primary"><a style="color: blue   ;" href="/productos/crear">Crear productos</a></button>
-</div>
+    <div class="container mt-4 mb-4 text-center">
+        <button class="btn btn-outline-primary"><a style="color: blue;" href="/productos/crear">Crear
+                productos</a></button>
+    </div>
 
+    <div class="container mb-4">
+        <% products.forEach((product) => { %>   
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><%= product.productName %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Precio: <%= product.price %></h6>
+                    <p class="card-text"><%= product.productDescription %></p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
 
 <%- include('../shared/footer') -%>

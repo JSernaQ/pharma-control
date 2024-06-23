@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { verifyJWT } = require('../middleware/verify-jwt')
 const router = Router();
 
 const {
@@ -13,6 +14,7 @@ router.get('/',
 );
 
 router.get('/inventario',
+    verifyJWT,
     productsInventoryGet
 );
 

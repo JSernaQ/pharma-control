@@ -1,10 +1,28 @@
 const { Router } = require('express');
-const { authLogin } = require('../controllers/auth.controller')
-const router = Router()
+const { verifyJWT } = require('../middleware/verify-jwt');
+const router = Router();
+
+const { 
+    authLoginGet, authLoginPost, authRegisterGet, authRegisterPost 
+} = require('../controllers/auth.controller');
 
 
-router.get('/login', 
-    authLogin
+router.get('/login',
+    authLoginGet
+);
+
+router.post('/login', 
+    authLoginPost
+);
+
+router.get('/register',
+    // verifyJWT,
+    authRegisterGet
+);
+
+router.post('/register',
+    // verifyJWT,
+    authRegisterPost
 );
 
 module.exports= router;

@@ -1,0 +1,31 @@
+<%- include('../shared/head', {webTitle: 'Registro'}) %>
+<div class="container-fluid mx-auto">
+    <% if (msg) { %>     
+        <div id="alertMessage" class="alert alert-danger" role="alert">
+            <%- msg %>
+        </div>
+    <% } %>
+    <div class="row text-center">
+
+        <div class="col-lg-4 mx-auto">
+            <h1>Registro</h1>
+        </div>
+
+        <div class="col-lg-4 mx-auto form" style="border: 2px;">
+            <form method="POST">
+                <input type="text" name="username" placeholder="username">
+                <input type="email" name="email" placeholder="email">
+                <input type="password" name="password1" placeholder="password">
+                <input type="password" name="password2" placeholder="confirm-password">
+
+                <div class="mb-4 mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        Registrar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<%- include('../shared/footer') %>
