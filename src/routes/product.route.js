@@ -10,6 +10,7 @@ const {
 } = require('../controllers/product.constroller')
 
 router.get('/',
+    verifyJWT,
     productsGet
 );
 
@@ -19,10 +20,12 @@ router.get('/inventario',
 );
 
 router.get('/crear', 
+    verifyJWT,
     productCreateGet
 );
 
-router.post('/crear', 
+router.post('/crear',
+    verifyJWT,
     productCreatePost
 );
 

@@ -1,10 +1,9 @@
-/* Estilo para el contenedor del mensaje de error */
 .alert-success {
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
     width: 80%;
     max-width: 400px;
     padding: 1rem;
@@ -20,7 +19,7 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
     width: 80%;
     max-width: 400px;
     padding: 1rem;
@@ -31,7 +30,6 @@
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
 
-/* Estilo para el botón de cerrar */
 .close {
     position: absolute;
     top: 0.5rem;
@@ -40,8 +38,8 @@
     cursor: pointer;
 }
 
-/* Opcional: animación de desvanecimiento */
 @keyframes fadeOut {
     0% { opacity: 1; }
     100% { opacity: 0; }
 }
+

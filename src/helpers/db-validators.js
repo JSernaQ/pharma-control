@@ -49,6 +49,8 @@ class DBValidators {
         return res.status(400).redirect('/auth/register?msg=Los datos ya existen')
 
     }
+
+    
 }
 
 module.exports = { DBValidators }

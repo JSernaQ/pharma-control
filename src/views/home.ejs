@@ -5,4 +5,10 @@
         <button id="closeAlert" class="close">&times;</button>
     </div>
 <% } %>
+<% if (error) { %>
+    <div id="alertMessage" class="alert-danger" role="alert">
+        <%= error %>
+        <button id="closeAlert" class="close">&times;</button>
+    </div>
+<% } %>
 <%- include('shared/footer') -%>

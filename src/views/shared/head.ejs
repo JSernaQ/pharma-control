@@ -4,15 +4,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pharma Control - <%= webTitle %>
-  </title>
+  <title>Pharma Control - <%= webTitle %></title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
-  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid text-center">
+
+    <div class="row align-items-start">
+
+      <div class="col-2" style="border: solid 2px black; background-color: rgb(0, 145, 255) ;">
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-5">
+            <a class="navbar-brand" href="/home">
+              
+              <img src="/img/user.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+              
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/">JuanSQ</a>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row m-1 mt-4 align-items-center">
+          <div class="col-1">
+            <i class="fas fa-house"></i>
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/">Home</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-1">
+            <i class="fa-solid fa-box-archive"></i>
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/productos">Productos</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-1">
+            <i class="fa-solid fa-cash-register"></i>
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/ventas">Ventas</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-1">
+
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/auth/login">login</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-1">
+
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/auth/register">Register</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center">
+          <div class="col-1">
+
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/productos/inventario">Inventario</a>
+          </div>
+        </div>
+
+        <div class="row m-1 mt-5 align-items-center" style="border: solid 1px gray;">
+          <div class="col-1">
+
+          </div>
+          <div class="col-3">
+            <a class="nav-link mx-auto" href="/auth/logout">logout</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><strong>Pharma Control</strong></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -21,11 +107,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-          <a class="nav-link" href="/productos">Productos</a>
-          <a class="nav-link" href="/ventas">Ventas</a>
+          <a class="nav-link mx-auto active" aria-current="page" href="/">Home</a>
+          <a class="nav-link mx-auto" href="/productos">Productos</a>
+          <a class="nav-link mx-auto" href="/ventas">Ventas</a>
+          <a class="nav-link mx-auto" href="/auth/login">login</a>
+          <a class="nav-link mx-auto" href="/auth/register">Register</a>
+          <a class="nav-link mx-auto" href="/productos/inventario">Inventario</a>
+          <a class="nav-link mx-auto" href="/auth/logout">logout</a>
 
         </div>
       </div>
     </div>
-  </nav>
+  </nav> -->

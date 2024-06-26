@@ -1,13 +1,19 @@
 const { Router } = require('express');
 const { verifyJWT } = require('../middleware/verify-jwt');
+const { isAuthenticated } = require('../middleware/checkAuthenticated');
 const router = Router();
 
 const { 
-    authLoginGet, authLoginPost, authRegisterGet, authRegisterPost 
+    authLoginGet,
+    authLoginPost,
+    authRegisterGet,
+    authRegisterPost,
+    logout
 } = require('../controllers/auth.controller');
 
 
 router.get('/login',
+    isAuthenticated,
     authLoginGet
 );
 
@@ -16,13 +22,18 @@ router.post('/login',
 );
 
 router.get('/register',
-    // verifyJWT,
+    verifyJWT,
     authRegisterGet
 );
 
 router.post('/register',
-    // verifyJWT,
+    verifyJWT,
     authRegisterPost
 );
+
+router.get('/logout',
+    verifyJWT,
+    logout
+)
 
 module.exports= router;
