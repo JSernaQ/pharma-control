@@ -1,27 +1,32 @@
 <%- include('../shared/head', {webTitle: 'Login'}) -%>
 <div class="container">
-    <form >
+    <% if (msg) { %>
+        <div id="alertMessage" class="alert-success" role="alert">
+            <%= msg %>
+            <button id="closeAlert" class="close">&times;</button>
+        </div>
+    <% } %>
+    <% if (error) { %>
+        <div id="alertMessage" class="alert-danger" role="alert">
+            <%= error %>
+            <button id="closeAlert" class="close">&times;</button>
+        </div>
+    <% } %>
+    <form method="POST">
         <div class="form-outline my-5">
-            <input type="email" id="form2Example1" class="form-control" />
-            <label class="form-label" for="form2Example1">Email address</label>
+            <input type="email" name="email" class="form-control" />
+            <label class="form-label" for="email">Email address</label>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example2" class="form-control" />
-            <label class="form-label" for="form2Example2">Password</label>
+            <input type="password" name="password" class="form-control" />
+            <label class="form-label" for="password">Password</label>
         </div>
 
-        <div class="row mb-4 ">
-            <div class="col">
-            <a href="#!">Forgot password?</a>
-            </div>
-        </div>
-
-        <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
         <div class="text-center">
-            <p>Not a member? <a href="#!">Register</a></p>
-            <p>or sign up with:</p>
+            <p>Not a member? <a href="/auth/register">Register</a></p>
         </div>
     </form>
 </div>

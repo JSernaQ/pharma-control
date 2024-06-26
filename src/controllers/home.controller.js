@@ -1,5 +1,7 @@
 const getHome = (req, res) => {
-    res.render('home')
+    const msg = req.query.msg || undefined;
+    const error = req.query.error || undefined;
+    res.render('home', {msg, error})
 };
 
 module.exports = {
