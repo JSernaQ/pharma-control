@@ -1,9 +1,11 @@
 const { Product } = require('../models/product.model');
 
 const productsGet = async (req, res) => {
+    const msg = req.query.msg || undefined
+    const error = req.query.error || undefined
     try {
         const productsItemsDB = await Product.find();
-        res.render('products/mainProducts', {products: productsItemsDB})
+        res.render('products/mainProducts', {products: productsItemsDB, msg, error})
     } catch (error) {
         res.status(404).json({
             success: false,

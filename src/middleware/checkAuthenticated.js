@@ -9,10 +9,7 @@ const isAuthenticated = (req, res, next) => {
             return res.status(401).redirect('/?error=Ya ingresaste al sistema');
 
         } catch (error) {
-
             console.log('Error:', error.message);
-            return res.status(403).redirect('/auth/login?error=Sesión expirada')
-
         }
     }
 
