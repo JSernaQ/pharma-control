@@ -1,105 +1,164 @@
-<%- include('../shared/head', {webTitle: 'Agregar Producto'}) -%>
+<%- include('../shared/head', {webTitle: 'Agregar Producto' }) -%>
 
-<div class="container">
-    <h1 class="mb-4 my-5">Agregar producto</h1>
+    <div class="container-fluid mt-4">
+        <div class="container text-center my-5">
 
-    <div class="container">
-        <div style="display: none;" class="row alert alert-success" role="alert" id="alerts">
-            <div class="text-center mb-2"><%= alert %></div>
-            <button type="button" class=" col btn btn-outline-success" id="btn-alert">Success</button>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10"
+                    style="border-radius: 15px 15px 0 0; background-color:rgb(130, 130, 130);">
+                    <div class="m-3">
+                        <strong style="color: white;">REGISTRAR PRODUCTO</strong>
+                    </div>
+                </div>
+            </div>
+
+            <form action="/productos/crear" method="POST">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-lg-10" style="background-color: rgb(205, 205, 205);">
+                        <div style="padding: 5%;">
+
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Codigo:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <input type="text" placeholder="Codigo (Opcional)" class="col-10 form-control my-2" name="barCode" id="barCode">
+                            </div>
+
+                            <button class="btn btn-secondary mt-3 mb-4" id="startScanButton">Escanear</button>
+                            
+                            <div class="row justify-content-center d-flex" id="camera-container" style="display: none;">
+                                <div class="col-8" id="camera" style="width: 320px; height: 240px; display: none;"></div>
+                                <div class="col-10">
+                                    <button class="btn btn-danger" id="closeCam" style="display: none;">Cancelar</button>
+                                </div>
+                            </div>
+                            
+
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Producto:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <input type="text" placeholder="Nombre del producto" class="col-10 form-control my-2" name="productName" required>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Descripción:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <textarea placeholder="Descripción del producto" class="col-10 form-control my-2" name="productDescription"></textarea>
+                            </div>
+                                
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Precio:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <input type="number" placeholder="Precio" class="col-10 form-control my-2" name="price" required>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Stock:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <input type="number" placeholder="Stock" class="col-10 form-control my-2" name="stock" step="1" required>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Stock mínimo:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <input type="number" placeholder="Stock minimo del producto (Opcional)" class="col-10 form-control my-2" name="minStock" step="1">
+                            </div>
+
+                            <!-- <div class="row justify-content-center">
+                                <h6 class="col-12 mb-1 mt-3">Proovedor:</h6>
+                            </div>
+                            <div class="row justify-content-center">
+                                <select name="supplier" id="">
+                                </select>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10" style="background-color: rgb(205, 205, 205); border-radius: 0 0 15px 15px;">
+                        <button type="submit" class="btn btn-primary mb-4">Enviar</button>
+                    </div>
+                </div>
+                
+            </form>
+
         </div>
-        <% if (alert != '') { %>
-            <script>
-                document.getElementById('alerts').style.display = 'block'
-                document.getElementById('btn-alert').addEventListener('click', function(event) {
-                    document.getElementById('alerts').style.display = 'none'
-                })
-            </script>
-        <% } %>
+
     </div>
 
-    <form action="/productos/crear" method="POST">
-        <input class="mb-4" type="text" placeholder="Codigo (Opcional)" class="form-control my-2" name="barCode" id="barCode">
-        <button class="mb-4" id="startScanButton">Escanear código de barras</button>
-        <button class="" id="closeCam" style="display: none">Cancelar</button>
-        <div class="text-center" id="camera" style="display: none;"></div>
-        
-        <input type="text" placeholder="Nombre del producto" class="form-control my-2" name="productName">
-        
-        <input type="text" placeholder="Descripción del producto" class="form-control my-2" name="productDescription">
-        
-        <input type="number" placeholder="Precio" class="form-control my-2" name="price">
-
-        <input type="number" placeholder="Stock" class="form-control my-2" name="stock">
-
-        <input type="number" placeholder="Stock minimo del producto (Opcional)" class="form-control my-2" name="minStock">
-
-        <input type="text" placeholder="Proveedor (Opcional)" class="form-control my-2" name="supplier">
 
 
-        <button type="submit" class="btn btn-primary mb-4">Enviar</button>
-    </form>
-</div>
-
-
-
-<script src="/js/quagga.min.js"></script>
-<script>
-    document.getElementById('closeCam').addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('closeCam').style.display = 'none';
-        document.getElementById('camera').style.display = 'none';
-        Quagga.stop();
-    });
-</script>
-<script>
-    document.getElementById('startScanButton').addEventListener('click', function(event) {
-        event.preventDefault(); 
-        document.getElementById('closeCam').style.display = 'block';
-        document.getElementById('camera').style.display = 'block';
-
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera')
-            },
-            decoder: {
-                readers: [
-                    "code_128_reader",
-                    "ean_reader",
-                    "ean_8_reader",
-                    "upc_reader",
-                    "upc_e_reader",
-                    "code_39_reader",
-                    "code_39_vin_reader",
-                    "codabar_reader",
-                    "i2of5_reader",
-                    "2of5_reader",
-                    "code_93_reader",
-                ]
-            }
-        }, function(err) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start(); 
-        });
-
-        Quagga.onDetected(function(data) {
-            console.log(data.codeResult.code);
-
-            document.getElementById('barCode').value = data.codeResult.code;
-
-            Quagga.stop();
-            document.getElementById('camera').style.display = 'none';
+    <script src="/js/quagga.min.js"></script>
+    <script>
+        document.getElementById('closeCam').addEventListener('click', function (event) {
+            event.preventDefault();
             document.getElementById('closeCam').style.display = 'none';
-
+            document.getElementById('camera').style.display = 'none';
+            Quagga.stop();
         });
-    });
+    </script>
+    <script>
+        document.getElementById('startScanButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.getElementById('closeCam').style.display = 'block';
+            document.getElementById('camera-container').style.display = 'block';
+            document.getElementById('camera').style.display = 'block';
 
-</script>
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#camera'),
+                    constraints: {
+                        width: 420,
+                        height: 240,
+                        facingMode: "environment" // Cambiar a "user" si la cámara frontal es necesaria
+                    }
+                },
+                decoder: {
+                    readers: [
+                        "code_128_reader",
+                        "ean_reader",
+                        "ean_8_reader",
+                        "upc_reader",
+                        "upc_e_reader",
+                        "code_39_reader",
+                        "code_39_vin_reader",
+                        "codabar_reader",
+                        "i2of5_reader",
+                        "2of5_reader",
+                        "code_93_reader",
+                    ]
+                },
+            }, function (err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            });
 
-<%- include('../shared/footer') -%>
+            Quagga.onDetected(function (data) {
+                console.log(data.codeResult.code);
+
+                document.getElementById('barCode').value = data.codeResult.code;
+
+                Quagga.stop();
+                document.getElementById('camera').style.display = 'none';
+                document.getElementById('closeCam').style.display = 'none';
+
+            });
+        });
+
+    </script>
+
+    <%- include('../shared/footer') -%>
