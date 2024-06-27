@@ -6,7 +6,10 @@ const {
     productCreateGet,
     productCreatePost,
     productsInventoryGet,
-    productsGet
+    productsGet,
+    productDelete,
+    getProductUpdate,
+    putProductUpdate
 } = require('../controllers/product.controller')
 
 router.get('/',
@@ -28,6 +31,21 @@ router.post('/crear',
     verifyJWT,
     productCreatePost
 );
+
+router.get('/eliminar/:_id',
+    verifyJWT,
+    productDelete
+)
+
+router.get('/editar/:id',
+    verifyJWT,
+    getProductUpdate
+)
+
+router.post('/editar/:id',
+    verifyJWT,
+    putProductUpdate
+)
 
 
 module.exports = router;

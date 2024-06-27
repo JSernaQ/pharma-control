@@ -17,10 +17,14 @@ const productsGet = async (req, res) => {
 };
 
 const productsInventoryGet = async (req, res) => {
+
+    const msg = req.query.msg || undefined
+    const error = req.query.error || undefined
+
     try {
 
         const productsItemsDB = await Product.find();
-        return res.status(200).render('products/inventory', { productsItems: productsItemsDB })
+        return res.status(200).render('products/inventory', { productsItems: productsItemsDB, msg, error })
 
     } catch (error) {
         res.status(404).json({
@@ -70,9 +74,67 @@ const productCreatePost = async (req, res) => {
 
 }
 
+const productDelete = async (req, res) => {
+
+    const { _id } = req.params;
+
+    try {
+
+        const product = await Product.findByIdAndUpdate(_id, { isActive: false });
+        return res.status(200).redirect('/productos/inventario?msg=Producto eliminado correctamente');
+
+    } catch (error) {
+        console.error("Error al eliminar el producto:", error.message);
+        return res.status(400).redirect(`/productos/inventario?error=${error.message}`);
+    }
+
+};
+
+const getProductUpdate = async (req, res) => {
+
+    const msg = req.query.msg || undefined;
+    const error = req.query.error || undefined;
+    const { id } = req.params;
+
+    try {
+
+        const product = await Product.find({ _id: id });
+        if (!product) {
+            return res.status(404).redirect('/productos?error=Producto no encontrado')
+        }
+        return res.status(200).render('products/productUpdate', { product, msg, error })
+
+    } catch (error) {
+        return res.status(404).redirect('/productos?error=Error al acceder a la pagina')
+    }
+
+
+}
+
+const putProductUpdate = async (req, res) => {
+
+    const { id } = req.params;
+    const updatedData = req.body;
+
+    try {
+        const result = await Product.findByIdAndUpdate({_id: id}, updatedData);
+        if (result) {
+            return res.status(200).redirect('/productos?msg=Productos actualizado correctamente');
+        }
+
+        return res.status(404).redirect('/productos?error=Producto no encontrado');
+
+    } catch (error) {
+        return res.status(500).redirect(`/productos?error=Error al actualizar el producto ${error.message}`);
+    }
+}
+
 module.exports = {
     productCreateGet,
     productCreatePost,
     productsInventoryGet,
-    productsGet
+    productsGet,
+    productDelete,
+    getProductUpdate,
+    putProductUpdate
 }
