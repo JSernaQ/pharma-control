@@ -137,4 +137,4 @@ module.exports = {
     productDelete,
     getProductUpdate,
     putProductUpdate
-}
+}   
