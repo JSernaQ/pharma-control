@@ -1,4 +1,4 @@
-<%- include('../shared/head', {webTitle: 'Registrar Producto' }) -%>
+<%- include('../shared/head', {webTitle: 'Editar Producto' }) -%>
 
     <div class="container-fluid mt-4">
         <div class="container text-center my-5">
@@ -7,23 +7,22 @@
                 <div class="col-12 col-lg-10"
                     style="border-radius: 15px 15px 0 0; background-color:rgb(130, 130, 130);">
                     <div class="m-3">
-                        <strong style="color: white;">REGISTRAR PRODUCTO</strong>
+                        <strong style="color: white;">EDITAR PRODUCTO</strong>
                     </div>
                 </div>
             </div>
 
-            <form action="/productos/crear" method="POST">
+            <form action="/productos/editar/<%= product[0]._id %>" method="POST">
 
                 <div class="row justify-content-center">
 
                     <div class="col-12 col-lg-10" style="background-color: rgb(205, 205, 205);">
                         <div style="padding: 5%;">
-
                             <div class="row justify-content-center">
                                 <h6 class="col-12 mb-1 mt-3">Codigo:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <input type="text" placeholder="Codigo (Opcional)" class="col-10 form-control my-2" name="barCode" id="barCode">
+                                <input type="text" placeholder="Codigo (Opcional)" value="<%= product[0].barCode %>" class="col-10 form-control my-2" name="barCode" >
                             </div>
 
                             <button class="btn btn-secondary mt-3 mb-4" id="startScanButton">Escanear</button>
@@ -40,35 +39,35 @@
                                 <h6 class="col-12 mb-1 mt-3">Producto:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <input type="text" placeholder="Nombre del producto" class="col-10 form-control my-2" name="productName" required>
+                                <input type="text" placeholder="Nombre del producto" value="<%= product[0].productName %>" class="col-10 form-control my-2" name="productName" required>
                             </div>
 
                             <div class="row justify-content-center">
                                 <h6 class="col-12 mb-1 mt-3">Descripción:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <textarea placeholder="Descripción del producto" class="col-10 form-control my-2" name="productDescription"></textarea>
+                                <textarea placeholder="Descripción del producto" class="col-10 form-control my-2" name="productDescription"><%= product[0].productDescription %></textarea>
                             </div>
                                 
                             <div class="row justify-content-center">
                                 <h6 class="col-12 mb-1 mt-3">Precio:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <input type="number" placeholder="Precio" class="col-10 form-control my-2" name="price" required>
+                                <input type="number" placeholder="Precio" value="<%= product[0].price %>" class="col-10 form-control my-2" name="price" required>
                             </div>
 
                             <div class="row justify-content-center">
                                 <h6 class="col-12 mb-1 mt-3">Stock:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <input type="number" placeholder="Stock" class="col-10 form-control my-2" name="stock" step="1" required>
+                                <input type="number" placeholder="Stock" value="<%= product[0].stock %>" class="col-10 form-control my-2" name="stock" step="1" required>
                             </div>
 
                             <div class="row justify-content-center">
                                 <h6 class="col-12 mb-1 mt-3">Stock mínimo:</h6>
                             </div>
                             <div class="row justify-content-center">
-                                <input type="number" placeholder="Stock minimo del producto (Opcional)" class="col-10 form-control my-2" name="minStock" step="1">
+                                <input type="number" placeholder="Stock minimo del producto (Opcional)" value="<%= product[0].minStock %>" class="col-10 form-control my-2" name="minStock" step="1">
                             </div>
 
                             <!-- <div class="row justify-content-center">
@@ -84,7 +83,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10" style="background-color: rgb(205, 205, 205); border-radius: 0 0 15px 15px;">
-                        <button type="submit" class="btn btn-primary mb-4">Enviar</button>
+                        <button type="submit" class="btn btn-primary mb-4">Guardar cambios</button>
                     </div>
                 </div>
                 

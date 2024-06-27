@@ -1,3 +1,7 @@
+body {
+    background-color: #e6e6e6;
+}
+
 .alert-success {
     position: fixed;
     top: 20px;
