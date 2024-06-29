@@ -1,5 +1,6 @@
 body {
-    background-color: #e6e6e6;
+    background-color: #ffffff;
+    font-style: Monospace;
 }
 
 .alert-success {
@@ -46,4 +47,3 @@ body {
     0% { opacity: 1; }
     100% { opacity: 0; }
 }
-
