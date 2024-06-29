@@ -99,7 +99,8 @@ const getProductUpdate = async (req, res) => {
     try {
 
         const product = await Product.find({ _id: id });
-        if (!product) {
+        const active = product[0].isActive;
+        if (!product || !active) {
             return res.status(404).redirect('/productos?error=Producto no encontrado')
         }
         return res.status(200).render('products/productUpdate', { product, msg, error })

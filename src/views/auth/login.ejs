@@ -1,33 +1,39 @@
 <%- include('../shared/head', {webTitle: 'Login'}) -%>
-<div class="container">
-    <% if (msg) { %>
-        <div id="alertMessage" class="alert-success" role="alert">
-            <%= msg %>
-            <button id="closeAlert" class="close">&times;</button>
-        </div>
-    <% } %>
-    <% if (error) { %>
-        <div id="alertMessage" class="alert-danger" role="alert">
-            <%= error %>
-            <button id="closeAlert" class="close">&times;</button>
-        </div>
-    <% } %>
-    <form method="POST">
-        <div class="form-outline my-5">
-            <input type="email" name="email" class="form-control" />
-            <label class="form-label" for="email">Email address</label>
-        </div>
+<% if (msg) { %>
+    <div id="alertMessage" class="alert-success" role="alert">
+        <%= msg %>
+        <button id="closeAlert" class="close">&times;</button>
+    </div>
+<% } %>
+<% if (error) { %>
+    <div id="alertMessage" class="alert-danger" role="alert">
+        <%= error %>
+        <button id="closeAlert" class="close">&times;</button>
+    </div>
+<% } %>
 
-        <div class="form-outline mb-4">
-            <input type="password" name="password" class="form-control" />
-            <label class="form-label" for="password">Password</label>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <div class="col-10 col-lg-6 text-center mt-5" style="border-radius: 15px; border: solid 2px gray; padding: 50px; box-shadow: 10px 10px 22px -6px rgba(0,0,0,0.80);">
+            <h4><strong>LOGIN</strong></h4>
+            <form method="POST">
+                <div class="form-outline m-5">
+                    <input type="email" name="email" class="form-control" />
+                    <label class="form-label" for="email">Email address</label>
+                </div>
+                
+                <div class="form-outline m-5">
+                    <input type="password" name="password" class="form-control" />
+                    <label class="form-label" for="password">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary mb-4">Sign in</button>
+                <hr>
+                
+                <div class="text-center">
+                    <p>Not a member? <a href="/auth/register">Register</a></p>
+                </div>
+            </form>
         </div>
-
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-        <div class="text-center">
-            <p>Not a member? <a href="/auth/register">Register</a></p>
-        </div>
-    </form>
+    </div>
 </div>
 <%- include('../shared/footer') -%>

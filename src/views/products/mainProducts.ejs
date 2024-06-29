@@ -1,35 +1,138 @@
 <%- include('../shared/head', {webTitle: 'Agregar Producto' }) -%>
 
-    <div class="container-fluid text-center">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-10">
-                <button class="btn btn-primary"><a style="color: rgb(255, 255, 255);" href="/productos/crear"><strong>Registrar producto</strong></a></button>
-            </div>
-        </div>
-        
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-10">
-                
-            </div>
-        </div>
-    </div>
+<div class="container-fluid text-center" style="padding-top: 10px;">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-10 col-lg-10">
+            <button class="btn btn-primary">
+                <a href="/productos/crear" style="color: rgb(255, 255, 255);"><strong>REGISTRAR PRODUCTO</strong></a>
+            </button>
 
+            <div class="row mt-4 justify-content-center" style="border-radius: 15px 15px 0 0; background: linear-gradient(90deg, rgb(218, 218, 218), rgb(203, 203, 203), rgb(162, 162, 162));">
+                <div class="mt-4">
+                    <input id="search-input" placeholder="Search" type="search" class="input" style="border-radius: 10px; padding-left: 7px; width: 100%;">
+                    <button id="startScanButton" class="btn btn-secondary mt-3 mb-4"><i class="fa-solid fa-barcode"></i></button>
 
-    <div class="container mt-4 mb-4 text-center">
-    </div>
-
-    <div class="container mb-4">
-        <% products.forEach((product) => { %>   
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center"><%= product.productName %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Precio: <%= product.price %></h6>
-                    <p class="card-text"><%= product.productDescription %></p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <div id="camera-container" class="row justify-content-center d-flex" style="display: none;">
+                        <div class="col-8 d-flex justify-content-center">
+                            <div id="camera" style="width: 320px; height: 240px; display: none;"></div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center mt-2">
+                            <button id="closeCam" class="btn btn-danger" style="display: none;">Cancelar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <% }); %>
+
+            <div id="search-results" class="row justify-content-around" style="border-radius: 0 0 15px 15px; background: linear-gradient(90deg, rgb(218, 218, 218), rgb(203, 203, 203), rgb(162, 162, 162));">
+                <% products.forEach(product => { %>
+                    <% if (product.isActive) { %>
+                        <div class="card product-card mx-5 mb-5 mt-5" style="width: 250px; border: solid 2px rgb(112, 111, 111); border-radius: 10px; box-shadow: 10px 10px 22px -6px rgba(0,0,0,0.80);">
+                            <div class="card-body">
+                                <h6 class="barcode" style="display: none;"><%= product.barCode %></h6>
+                                <h6 class="card-title"><i class="fa-solid fa-box"></i></h6>
+                                <h5 class="text-start product-name"><strong><%= product.productName %></strong></h5>
+                                <h6 class="card-subtitle"><%= product.productDescription %></h6>
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <h6 class="card-subtitle">Precio:</h6>
+                                        <h6><%= product.price %>$</h6>
+                                        <hr>
+                                        <h6 class="card-subtitle">Stock:</h6>
+                                        <h6><%= product.stock %></h6>
+                                    </div>
+                                    <div class="col-6 align-self-center">
+                                        <button class="btn btn-primary">
+                                            <a href="/productos/editar/<%= product._id %>" style="color: white;">Editar</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                <% }) %>
+            </div>
+        </div>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/quagga.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').on('input', function() {
+            var query = $(this).val().toLowerCase();
+            $('.product-card').each(function() {
+                var productName = $(this).find('.product-name').text().toLowerCase();
+                var barcode = $(this).find('.barcode').text().toLowerCase();
+                if (productName.includes(query) || barcode.includes(query)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        $('#startScanButton').on('click', function(event) {
+            event.preventDefault();
+            startScanner();
+        });
+
+        function startScanner() {
+            $('#camera').show();
+            $('#closeCam').show();
+            $('#camera-container').show();
+
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#camera'),
+                    constraints: {
+                        width: 320,
+                        height: 240,
+                        facingMode: "environment"
+                    }
+                },
+                decoder: {
+                    readers: [
+                        "code_128_reader",
+                        "ean_reader",
+                        "ean_8_reader",
+                        "upc_reader",
+                        "upc_e_reader",
+                        "code_39_reader",
+                        "code_39_vin_reader",
+                        "codabar_reader",
+                        "i2of5_reader",
+                        "2of5_reader",
+                        "code_93_reader",
+                    ]
+                }
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function(data) {
+                var code = data.codeResult.code;
+                $('#search-input').val(code).trigger('input');
+                Quagga.stop();
+                $('#camera').hide();
+                $('#closeCam').hide();
+            });
+
+            $('#closeCam').on('click', function(event) {
+                event.preventDefault();
+                $('#camera').hide();
+                $('#closeCam').hide();
+                Quagga.stop();
+            });
+        }
+    });
+</script>
 
 <%- include('../shared/footer') -%>
