@@ -10,26 +10,34 @@
 </footer>
 
 <script>
-    // Aplicar animación de desvanecimiento y ocultar el mensaje de éxito
-    const alertSuccess = document.querySelector('.alert-success');
+
+    const alertSuccess = document.querySelector('#alertMessage');
     if (alertSuccess) {
-        alertSuccess.style.animation = 'fadeOut 5s ease-in-out forwards';
+        alertSuccess.style.animation = 'fadeOut 3s ease-in-out forwards';
         setTimeout(() => {
             alertSuccess.style.display = 'none';
-        }, 5000);
+        }, 3000);
+        
+        const closeAlertSuccess = document.querySelector('#closeAlert');
+        closeAlertSuccess.addEventListener('click', () => {
+            alertSuccess.style.display = 'none';
+        });
     }
 
-    // Aplicar animación de desvanecimiento y ocultar el mensaje de error
-    const alertDanger = document.querySelector('.alert-danger');
+    const alertDanger = document.querySelector('#alertDanger');
     if (alertDanger) {
-        alertDanger.style.animation = 'fadeOut 5s ease-in-out forwards';
+        alertDanger.style.animation = 'fadeOut 2s ease-in-out forwards';
         setTimeout(() => {
             alertDanger.style.display = 'none';
-        }, 5000);
+        }, 2000);
+
+        const closeAlertDanger = document.querySelector('#closeAlertDanger');
+        closeAlertDanger.addEventListener('click', () => {
+            alertDanger.style.display = 'none';
+        });
     }
-
-
 </script>
+
 <script src="https://kit.fontawesome.com/1b8bba86c3.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -37,6 +45,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
