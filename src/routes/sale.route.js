@@ -3,12 +3,17 @@ const { verifyJWT } = require('../middleware/verify-jwt')
 const router = Router();
 
 const {
-    salePageGet
+    salePageGet,
+    saveSale
 } = require('../controllers/sale.controller')
 
 router.get('/',
-    verifyJWT,
+    // verifyJWT,
     salePageGet
+);
+
+router.post('/save', 
+    saveSale
 );
 
 

@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <style>
-
     .sidebar {
       display: block;
       position: fixed;
@@ -20,24 +19,20 @@
       height: 100%;
     }
 
-    
+
     .sidebar-hidden {
       transform: translateX(0%);
       transition: transform 0.3s ease-in-out;
     }
-
-    .rotated {
-      transform: rotate(180deg); 
-    }
-
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar mb-4" style="position: fixed; z-index: 500; width: 100%; background-color: gray;">
-    <div style="padding-left: 8%;">
-      hola
+  <nav class="navbar" style="background-color: gray; position: fixed; z-index: 500; width: 100%;">
+    <div class="container-fluid">
+      <button class="btn btn-primary" id="btn-arrow" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></i></button> 
+      <span class="navbar-brand mb-0 h1 text-white">Pharma Control</span>
     </div>
   </nav>
 
@@ -47,7 +42,11 @@
 
       <div class="col-12 col-lg-2 sidebar" id="sidebar">
 
-        <div class="row m-1 mt-4 align-items-center">
+        <div class="justify-content-end">
+          <button class="btn btn-primary rotated" id="btn-arrow" onclick="toggleSidebar()"><i class="fa-solid fa-x"></i></button>
+        </div>
+
+        <div class="row m-1 mt-1 align-items-center">
           <div class="col-5">
             <a class="navbar-brand" href="/">
 
@@ -127,23 +126,21 @@
 
       </div>
 
-      <div class="col-0" style="z-index: 1000; position: fixed;">
-        <button class="btn btn-primary rotated" id="btn-arrow" onclick="toggleSidebar()"><i class="fa-solid fa-arrow-left"></i></button>
-      </div>
     </div>
   </div>
 
   <% if (msg) { %>
     <div id="alertMessage" class="alert-success" role="alert">
-        <%= msg %>
-        <button id="closeAlert" class="close">&times;</button>
+      <%= msg %>
+      <button id="closeAlert" class="close">&times;</button>
     </div>
   <% } %>
+
   <% if (error) { %>
-      <div id="alertMessage" class="alert-danger" role="alert">
-          <%= error %>
-          <button id="closeAlert" class="close">&times;</button>
-      </div>
+    <div id="alertDanger" class="alert-danger" role="alert">
+      <%= error %>
+      <button id="closeAlertDanger" class="close">&times;</button>
+    </div>
   <% } %>
 
   <script>

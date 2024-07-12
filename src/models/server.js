@@ -15,6 +15,12 @@ class Server {
             auth: '/auth',
             products: '/productos',
             sales: '/ventas',
+            // purchases: '/compras',
+            // customers: '/clientes',
+            // history: '/historial',
+            // reports: '/informes',
+            // config: '/config',
+            maintenance: '/maintenance'
         };
 
         this.middlewares();
@@ -27,10 +33,17 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.path.home, require('../routes/home.route'))
+        this.app.use(this.path.home, require('../routes/home.route'));
         this.app.use(this.path.auth, require('../routes/auth.route'));
         this.app.use(this.path.products, require('../routes/product.route'));
         this.app.use(this.path.sales, require('../routes/sale.route'));
+        // this.app.use(this.path.purchases, require('../routes/sale.route'));
+        // this.app.use(this.path.customers, require('../routes/sale.route'));
+        // this.app.use(this.path.history, require('../routes/sale.route'));
+        // this.app.use(this.path.reports, require('../routes/sale.route'));
+        // this.app.use(this.path.config, require('../routes/sale.route'));
+        this.app.use(this.path.maintenance, require('../routes/maintenance.route'));
+
     }
 
     middlewares() {
