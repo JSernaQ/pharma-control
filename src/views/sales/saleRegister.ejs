@@ -1,4 +1,4 @@
-<%- include('shared/head', {webTitle: 'Ventas' }) -%>
+<%- include('../shared/head', {webTitle: 'Ventas' }) -%>
 
     <div class="container-fluid text-center">
 
@@ -19,7 +19,7 @@
                     <div class="col-12 text-center">
                         <div class="table-responsive d-flex justify-content-around">
 
-                            <table id="sales-table" class="table table-secondary mt-3" style="width: fit-content;">
+                            <table id="sales-table" class="table table-secondary mt-3" style="border-radius: 15px;">
                                 <thead style="width: min-content;">
                                     <tr>
                                         <th>ítem</th>
@@ -38,11 +38,10 @@
                                             <select class="product-select">
                                                 <option value="" selected></option>
                                                 <% products.forEach(product=> { %>
-                                                    <option value="<%= product._id   %>"
-                                                        data-price="<%= product.price %>">
+                                                    <option value="<%= product._id %>" data-productName="<%= product.productName %>" data-price="<%= product.price %>">
                                                         <%= product.productName %>
                                                     </option>
-                                                    <% }) %>
+                                                <% }) %>
                                             </select>
                                         </td>
                                         <td>
@@ -121,8 +120,8 @@
                     <td>
                         <select class="product-select">
                             <option value="" selected></option>
-                            <% products.forEach(product => { %>
-                                <option value="<%= product._id %>" data-price="<%= product.price %>">
+                            <% products.forEach(product=> { %>
+                                <option value="<%= product._id %>" data-productName="<%= product.productName %>" data-price="<%= product.price %>">
                                     <%= product.productName %>
                                 </option>
                             <% }) %>
@@ -198,7 +197,8 @@
 
                         $('#sales-table .product-row').each(function () {
                             var product = {
-                                productName: $(this).find('.product-select').val(),
+                                id: $(this).find('.product-select').val(),
+                                productName: $(this).find('.product-select option:selected').data('productname'),
                                 quantity: $(this).find('.quantity').val(),
                                 unitPrice: $(this).find('.price').val()
                             };
@@ -253,4 +253,4 @@
         });
     </script>
 
-    <%- include('shared/footer') -%>
+    <%- include('../shared/footer') -%>

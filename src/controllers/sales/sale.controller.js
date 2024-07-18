@@ -1,6 +1,6 @@
-const { Product } = require('../models/product.model');
-const { Customer } = require('../models/customer.model');
-const { Sale } = require('../models/sale.model');
+const { Product } = require('../../models/product.model');
+const { Customer } = require('../../models/customer.model');
+const { Sale } = require('../../models/sale.model');
 
 const salePageGet = async (req, res) => {
     const msg = req.query.msg || undefined
@@ -9,21 +9,23 @@ const salePageGet = async (req, res) => {
     try {
         const products = await Product.find();
         const customers = await Customer.find();
-        res.render('sales', { customers, products, msg, error });
+        res.render('sales/saleRegister', { customers, products, msg, error });
     } catch (error) {
         console.error('Error al obtener productos y clientes:', error);
         res.status(500).send('Error interno del servidor');
     }
 };
 
-const saveSale = async (req, res) => {
+
+const saveSale = async (req, res) => {  
     try {
 
         const { products, total } = req.body;
 
         const saleProducts = products.map((product) => {
             return {
-                product: product.productName,
+                idProduct: product.id,
+                productName: product.productName,
                 quantity: product.quantity,
                 unitPrice: product.unitPrice
             };
