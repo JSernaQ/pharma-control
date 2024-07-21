@@ -19,10 +19,11 @@ class DBValidators {
 
     async loginValidator(email, password) {
         const user = await User.findOne({ email });
+        const passwordCompare = await this.passwordValidator(password, user.password);
 
-        if (!user || user.isActive == false) { return !!user };
-       
-        return await this.passwordValidator(password, user.password);
+        if (!user || user.isActive == false || passwordCompare == false) { return !!user };
+
+        return user
 
     }
 

@@ -20,7 +20,7 @@ const salePageGet = async (req, res) => {
 const saveSale = async (req, res) => {  
     try {
 
-        const { products, total } = req.body;
+        const { products, total, seller } = req.body;
 
         const saleProducts = products.map((product) => {
             return {
@@ -31,7 +31,22 @@ const saveSale = async (req, res) => {
             };
         });
 
-        const newSale = await Sale.create({products: saleProducts, total});
+        const newSale = await Sale.create({products: saleProducts, total, seller});
+
+        for (const product of saleProducts) {
+
+            const idProduct = product.idProduct;
+
+            const existingProduct = await Product.findById(idProduct);
+
+            existingProduct.stock -= product.quantity;
+            existingProduct.outputs = parseInt(existingProduct.outputs, 10) + parseInt(product.quantity, 10);
+            
+
+            await existingProduct.save();
+            
+        }
+
 
         res.status(200).send('Venta registrada exitosamente');
 

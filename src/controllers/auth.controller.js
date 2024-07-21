@@ -20,11 +20,12 @@ const authLoginPost = async (req, res) => {
 
     try {
         const access = await DBValidator.loginValidator(email, password);
+
         if (!access) {
             return res.status(400).redirect('/auth/login?error=Verifica los datos de acceso');
         }
 
-        const token = generateJWT();
+        const token = generateJWT(access._id, access.userName, access.rol);
 
         res.status(200).cookie('token', token, {
             httpOnly: true,

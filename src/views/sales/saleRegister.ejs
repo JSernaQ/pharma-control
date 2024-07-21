@@ -55,11 +55,10 @@
                                             <input class="total" type="number" readonly />
                                         </td>
                                         <td>
-                                            Juan
+                                            <h6 id="seller"><%- user.userName %></h6>
                                         </td>
                                         <td>
-                                            <span class="remove-row badge bg-danger"><i
-                                                    class="fa-solid fa-trash-can text-white"></i></span>
+                                            <span class="remove-row badge bg-danger"><i class="fa-solid fa-trash-can text-white"></i></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -137,7 +136,7 @@
                         <input class="total" type="number" readonly />
                     </td>
                     <td>
-                        Juan
+                        <h6 id="seller"><%- user.userName %></h6>
                     </td>
                     <td>
                         <span class="remove-row badge bg-danger"><i class="fa-solid fa-trash-can text-white"></i></span>
@@ -208,14 +207,15 @@
                         });
 
                         if (products.length > 0) {
-
                             var total = $('#grand-total').val();
+                            var seller = document.getElementById('seller').innerText;
                             var sale = {
                                 products: products,
-                                total: total
+                                total: total,
+                                seller: seller
                             };
 
-                            $.ajax({
+                            $.ajax({    
                                 type: 'POST',
                                 url: '/ventas/save',
                                 data: JSON.stringify(sale),

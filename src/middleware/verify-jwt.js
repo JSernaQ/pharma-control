@@ -9,7 +9,7 @@ const verifyJWT = (req, res, next) => {
     try {
 
         const decoded = jwt.verify(token, process.env.JWTSECRET);
-        req.user = {username: decoded.userName, rol: decoded.rol};
+
         return next();
 
     } catch (error) {

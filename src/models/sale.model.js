@@ -11,7 +11,7 @@ const saleSchema = new mongoose.Schema({
         }
     ],
     status: { type: String, required: true, enum: ["normal", "modificado", "cancelada"], default: "normal" },
-    seller: { type: String, required: true, default: "JuanSQ"},
+    seller: { type: String, required: true},
     total: { type: Number, required: true },
     createdAt: { type: Date, default: Date.now }
 });

@@ -32,8 +32,8 @@
                       <td><%= product.outputs %></td>
                       <td><%= product.outputs * product.price %></td>
                       <td>
-                          <button class="btn btn-primary btn-sm"><a style="color: white;" href="/productos/editar/<%= product._id %>">Editar</a></button>
-                          <button class="btn btn-danger btn-sm"><a href="/productos/eliminar/<%= product._id %>">Eliminar</a></button>
+                          <button class="btn btn-primary btn-sm"><a style="color: white; text-decoration: none;" href="/productos/editar/<%= product._id %>">Editar</a></button>
+                          <button class="btn btn-danger btn-sm"><a style="color: white; text-decoration: none;" href="/productos/eliminar/<%= product._id %>">Eliminar</a></button>
                       </td>
                   </tr>
                   <% a = a + 1 %>
