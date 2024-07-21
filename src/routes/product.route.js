@@ -13,7 +13,7 @@ const {
 } = require('../controllers/product.controller')
 
 router.get('/',
-    // verifyJWT,
+    verifyJWT,
     productsGet
 );
 
@@ -23,7 +23,7 @@ router.get('/inventario',
 );
 
 router.get('/crear', 
-    // verifyJWT,
+    verifyJWT,
     productCreateGet
 );
 

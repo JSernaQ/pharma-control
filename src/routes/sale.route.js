@@ -5,15 +5,25 @@ const router = Router();
 const {
     salePageGet,
     saveSale
-} = require('../controllers/sale.controller')
+} = require('../controllers/sales/sale.controller');
+
+const { 
+    saleHistoryGet
+} = require('../controllers/sales/saleHistory.controller');
 
 router.get('/',
-    // verifyJWT,
+    verifyJWT,
     salePageGet
 );
 
 router.post('/save', 
+    verifyJWT,
     saveSale
+);
+
+router.get('/historial', 
+    verifyJWT,
+    saleHistoryGet
 );
 
 

@@ -46,18 +46,31 @@
           <button class="btn btn-primary rotated" id="btn-arrow" onclick="toggleSidebar()"><i class="fa-solid fa-x"></i></button>
         </div>
 
+        
         <div class="row m-1 mt-1 align-items-center">
           <div class="col-5">
             <a class="navbar-brand" href="/">
-
+              
               <img src="/img/user.png" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
-
+              
             </a>
           </div>
-          <div class="col-2">
-            <a style="color: white;" class="nav-link mx-auto" href="/"><strong>JuanSQ</strong></a>
-          </div>
+
+          <% if (isAuthenticated) { %>
+            <div class="col-2">
+              <a style="color: white;" class="nav-link mx-auto" href="/"><strong><%- user.userName %></strong></a>
+            </div>
+          <% } else{ %>
+          
+            <div class="col-2">
+              <a style="color: white;" class="nav-link mx-auto" href="/auth/login"><strong>INICIAR SESIÓN</strong></a>
+            </div>
+          
+          <% } %>
+           
+        
         </div>
+         
 
         <hr>
 
@@ -70,59 +83,67 @@
           </div>
         </div>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-box-archive"></i>
-          </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/productos">Productos</a>
-          </div>
-        </div>
+        <% if (isAuthenticated) { %>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-cash-register"></i>
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-box-archive"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/productos">Productos</a>
+            </div>
           </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/ventas">Ventas</a>
-          </div>
-        </div>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-user"></i>
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-cash-register"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/ventas">Ventas</a>
+            </div>
           </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/auth/login">Login</a>
+          
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/productos/inventario">Inventario</a>
+            </div>
           </div>
-        </div>
+  
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/auth/logout">Logout</a>
+            </div>
+          </div>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-user-plus"></i>
+        <% } else { %>
+         
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/auth/login">Login</a>
+            </div>
           </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/auth/register">Register</a>
+  
+          <div class="row m-1 mt-5 align-items-center">
+            <div class="col-1">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <div class="col-3">
+              <a style="color: white;" class="nav-link mx-auto" href="/auth/register">Register</a>
+            </div>
           </div>
-        </div>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-boxes-stacked"></i>
-          </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/productos/inventario">Inventario</a>
-          </div>
-        </div>
+        <% } %>
 
-        <div class="row m-1 mt-5 align-items-center">
-          <div class="col-1">
-            <i class="fa-solid fa-right-from-bracket"></i>
-          </div>
-          <div class="col-3">
-            <a style="color: white;" class="nav-link mx-auto" href="/auth/logout">Logout</a>
-          </div>
-        </div>
+
 
       </div>
 

@@ -3,17 +3,26 @@ const jwt = require('jsonwebtoken');
 const isAuthenticated = (req, res, next) => {
     const token = req.cookies.token || undefined;
 
-    if (token) {
-        try {
-            const decode = jwt.verify(token, process.env.JWTSECRET);
-            return res.status(401).redirect('/?error=Ya ingresaste al sistema');
-
-        } catch (error) {
-            console.log('Error:', error.message);
-        }
+    if (!token) {
+        res.locals.isAuthenticated = false;
+        res.locals.user = null;
+        return next();
     }
 
-    return next();
-}
+    try {
+        const decoded = jwt.verify(token, process.env.JWTSECRET);
+
+        res.locals.isAuthenticated = true;
+        res.locals.user = {userName: decoded.userName, rol: decoded.rol};
+        return next();
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.locals.isAuthenticated = false;
+        res.locals.user = null;
+        return next();
+    }
+
+};
 
 module.exports = { isAuthenticated }

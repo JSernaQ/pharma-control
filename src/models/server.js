@@ -2,8 +2,9 @@ const express = require('express');
 const { mongoConnect } = require('../database/mongoConnection');
 const cors = require('cors');
 const path = require('path');
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const { isAuthenticated } = require('../middleware/checkAuthenticated');
 
 class Server {
     constructor() {
@@ -49,8 +50,10 @@ class Server {
     middlewares() {
         this.app.use(cors());
         this.app.use(express.json());
-        this.app.use(cookieParser())
+        this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+
+        this.app.use(isAuthenticated);
 
         this.app.use(express.static(path.join(__dirname, '../../public')));
 
