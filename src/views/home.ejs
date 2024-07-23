@@ -1,118 +1,150 @@
 <%- include('shared/head', { webTitle: 'Home' }) -%>
 
-    <div class="container-fluid text-center">
-        <div class="row justify-content-center">
+    <% if (!isAuthenticated) { %>
 
-            <div class="col-11 col-lg-11" style="margin-top: 5rem; background: linear-gradient(90deg, rgb(218, 218, 218), rgb(203, 203, 203), rgb(162, 162, 162)); box-shadow: 8px 8px 8px 0px rgba(0,0,0,0.75);">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
+            <div class="row d-flex justify-content-around align-items-center mt-5" style="background-color: gray; width: 80%; height: 80%;">
 
-                <row class="row justify-content-around mt-5">
-
-                    <a style="text-decoration: none;" href="/productos">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Productos</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-box-archive"></i>
-                                <p class="card-text">Ver todos los productos registrados.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a style="text-decoration: none;" href="/ventas">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Venta</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-cash-register"></i>
-                                <p class="card-text">Registrar una nueva venta.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a style="text-decoration: none;" href="/maintenance">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Compras</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="card-text">Registrar una nueva compra.</p>
-                            </div>
-                        </div>
-                    </a>                    
-                    
-                    <a style="text-decoration: none;" href="/maintenance">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Clientes</strong></div>
+                    <a style="text-decoration: none;" href="/auth/login">
+                        <div class="card m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                            <div class="card-header"><strong>Usuario Registrado</strong></div>
                             <div class="card-body">
                                 <i class="fa-solid fa-user"></i>
-                                <p class="card-text">Ver todos los clientes registrados.</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                </row>
-                
-                <hr>
-                
-                <row class="row justify-content-around mb-5">
-                    
-                    <a style="text-decoration: none;" href="/ventas/historial">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Historiales de Ventas</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-cash-register"></i>
-                                <p class="card-text">Ver el historial de las ventas realizadas.</p>
+                                <p class="card-text">Inicia sesión e ingresa al dashboard.</p>
                             </div>
                         </div>
                     </a>
 
-                    <a style="text-decoration: none;" href="/maintenance">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Historial de Compras</strong></div>
+                    <a style="text-decoration: none;" href="/auth/login">
+                        <div class="card m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                            <div class="card-header"><strong>Nuevos Usuarios</strong></div>
                             <div class="card-body">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="card-text">Ver el historial de las compras realizadas.</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <a style="text-decoration: none;" href="/productos/inventario">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Inventario</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-boxes-stacked"></i>
-                                <p class="card-text">Ver todos los productos registrados.</p>
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p class="card-text">Quieres abrir una nueva cuenta?.</p>
                             </div>
                         </div>
                     </a>
 
-                    <a style="text-decoration: none;" href="/maintenance">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Informes</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-file-zipper"></i>
-                                <p class="card-text">Ver los informes generados.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    
-                </row> 
-                
-                <row class="row justify-content-around mb-5">
-                    
-                    <a style="text-decoration: none;" href="/maintenance">
-                        <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
-                            <div class="card-header"><strong>Configuración</strong></div>
-                            <div class="card-body">
-                                <i class="fa-solid fa-gear"></i>
-                                <p class="card-text">Revisar los ajustes del sistema.</p>
-                            </div>
-                        </div>
-                    </a>
-                    
-                </row>
-                
             </div>
-
         </div>
-    </div>
 
-    <%- include('shared/footer') -%>
+
+    <% } else { %>
+     
+        <div class="container-fluid text-center">
+            <div class="row justify-content-center">
+
+                <div class="col-11 col-lg-11" style="margin-top: 5rem; background: linear-gradient(90deg, rgb(218, 218, 218), rgb(203, 203, 203), rgb(162, 162, 162)); box-shadow: 8px 8px 8px 0px rgba(0,0,0,0 80);">
+
+                    <row class="row justify-content-around mt-5">
+
+                        <a style="text-decoration: none;" href="/productos">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Productos</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-box-archive"></i>
+                                    <p class="card-text">Ver todos los productos registrados.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a style="text-decoration: none;" href="/ventas">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Venta</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-cash-register"></i>
+                                    <p class="card-text">Registrar una nueva venta.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a style="text-decoration: none;" href="/compras">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Compras</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <p class="card-text">Registrar una nueva compra.</p>
+                                </div>
+                            </div>
+                        </a>                    
+                        
+                        <a style="text-decoration: none;" href="/maintenance">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(109, 109, 109); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Clientes</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user"></i>
+                                    <p class="card-text">Ver todos los clientes registrados.</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </row>
+                    
+                    <hr>
+                    
+                    <row class="row justify-content-around mb-5">
+                        
+                        <a style="text-decoration: none;" href="/ventas/historial">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Historiales de Ventas</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-cash-register"></i>
+                                    <p class="card-text">Ver el historial de las ventas realizadas.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a style="text-decoration: none;" href="/compras/historial">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Historial de Compras</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <p class="card-text">Ver el historial de las compras realizadas.</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a style="text-decoration: none;" href="/productos/inventario">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(43, 109, 223); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Inventario</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-boxes-stacked"></i>
+                                    <p class="card-text">Ver todos los productos registrados.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a style="text-decoration: none;" href="/maintenance">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(109, 109, 109); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Informes</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-file-zipper"></i>
+                                    <p class="card-text">Ver los informes generados.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        
+                    </row> 
+                    
+                    <row class="row justify-content-around mb-5">
+                        
+                        <a style="text-decoration: none;" href="/maintenance">
+                            <div class="card text-bg-info m-3" style="color: white; background-color: rgb(109, 109, 109); max-width: 13rem; height: 13rem;">
+                                <div class="card-header"><strong>Configuración</strong></div>
+                                <div class="card-body">
+                                    <i class="fa-solid fa-gear"></i>
+                                    <p class="card-text">Revisar los ajustes del sistema.</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </row>
+                    
+                </div>
+
+            </div>
+        </div>
+    <% } %>
+
+<%- include('./shared/footer') %>
