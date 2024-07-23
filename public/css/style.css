@@ -1,6 +1,11 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: #ffffff;
     font-style: Monospace;
+    height: 100%;
 }
 
 .alert-success {

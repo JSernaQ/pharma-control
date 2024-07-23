@@ -5,9 +5,8 @@ const router = Router();
 router.get('/', verifyJWT, (req, res) => {
     const msg = req.query.msg || undefined
     const error = req.query.error || undefined
-    const user = req.user || undefined
 
-    return res.status(200).render('maintenance', {msg, error, user});
+    return res.status(200).render('maintenance', {msg, error});
 });
 
 module.exports = router;
